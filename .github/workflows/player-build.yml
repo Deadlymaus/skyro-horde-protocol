@@ -1,0 +1,15 @@
+name: player-build
+
+# Disabled until week 13. Do not remove `if: false` to force a green badge.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  windows-player:
+    if: false
+    runs-on: windows-latest
+    steps:
+      - name: Placeholder
+        run: echo "Player build CI is off until week 13."

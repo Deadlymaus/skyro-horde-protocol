@@ -1,8 +1,8 @@
 # Horde Protocol
 
-Class template for Advanced Unity 3/4 (S1 teaching vehicle). This remote is **read-only for students**. Work happens on your personal (week 3–5) or pair remote — see git policy in the session kits.
+Class template for Advanced Unity 3/4 (S1 teaching vehicle). This remote is **read-only for students**. Fork it and work on your own fork. Do not push here.
 
-This is **not** a playable horde game. Hello exists so clone → Play → Player Build is green in week 3.
+This is **not** a playable horde game. The Hello scene exists so that open → Play works, with no red errors in the console.
 
 ## Hub / editor
 
@@ -21,7 +21,7 @@ If Hub offers an upgrade dialog, **Cancel**. Wrong patch = not the class toolcha
 
 ## Clone / open
 
-1. Clone this repository (or the copy your mentor assigned as your remote).
+1. Fork this repository and clone **your fork**.
 2. Unity Hub → **Add** → select this folder.
 3. Open with **`6000.3.10f1`**. Wait for the first import.
 4. Open `Assets/Scenes/Hello.unity`.
@@ -32,7 +32,7 @@ Do not upgrade packages from Package Manager. If import fails, re-clone; do not 
 
 ## Folder map + asmdef
 
-`Assets/Scenes/` and `Assets/Settings/` stay outside `_Project/` on purpose (week 3 whiteboard). Runtime code lives under `Assets/_Project/`:
+`Assets/Scenes/` and `Assets/Settings/` stay outside `_Project/` on purpose. They are not a gameplay module. Runtime code lives under `Assets/_Project/`:
 
 | Folder | Assembly | Allowed to reference |
 |--------|----------|----------------------|
@@ -42,17 +42,17 @@ Do not upgrade packages from Package Manager. If import fails, re-clone; do not 
 | `Editor/` | `HordeProtocol.Editor` | Gameplay, Data (Editor platform only) |
 | `Tests/` | `HordeProtocol.Tests` | Gameplay, Data, Test Runner |
 
-**Dependency rule:** Presentation may use Gameplay and Data. Gameplay must **not** reference Editor or Presentation. Tests reference what they test. Art and UI prefabs go under Presentation later; ScriptableObject wave/loot data under Data (week 10). Empty assemblies are intentional — week 6 adds ADR and moves leftover scripts, it does not invent this map from scratch.
+**Dependency rule:** Presentation may use Gameplay and Data. Gameplay must **not** reference Editor or Presentation. Tests reference what they test. Art and UI prefabs go under Presentation later; ScriptableObject wave/loot data under Data (week 10). Empty assemblies are intentional. Week 6 writes this map down as an ADR (`docs/adr/001-hranice-modulov.md`). That week does not add an assembly and does not move scripts. `HelloBanner` already lives in Gameplay.
 
 Input Actions: `Assets/Settings/Horde.inputactions` — map `Player` with `Move` (Vector2), `Fire` (Button), `Pause` (Button). Bindings are the GDD contract; they are not wired to a player object in Hello.
 
 ## DoD convention (git)
 
-Weekly proof is a PR named `week-XX-kebab` **on your student or pair remote**, merged into **that** remote’s `main`.
+Weekly proof is a PR named `week-XX-kebab` on **your fork**, merged into **that fork’s** `main`.
 
-Do **not** push to this class `main`. This repo stays the template (tags like `week-03-start` are mentor-only).
+Do **not** push to this class `main`. This repo stays the template. Tags on this remote are mentor-only.
 
-Host URL: `TODO(ops)`.
+Repository: https://github.com/teo-sk/skyro-horde-protocol
 
 ## Packages — frozen
 

@@ -1,0 +1,16 @@
+Status:
+	- Proposed
+
+Context:
+	- Hranice modulov v Horde Protocol polročnom projekte a ich zodpovednosti.
+	- Sme v škole a aby sme sa naučili pisať ADR.
+
+Rozhodnutie: 
+	- Každý modul bude mať jasne definované zodpovednosti a rozhranie.
+	- Moduly budú navrhnuté tak, aby minimalizovali závislosti medzi sebou.
+	- Každý modul bude mať svoj vlastný súbor s definíciou rozhrania a implementáciou.
+
+
+Dôsledky:
+	- Definovanie hraníc modulov umožní lepšiu organizáciu kódu a zníži závislosti medzi modulmi.
+	- Zodpovednosti modulov budú jasne rozdelené, čo uľahčí údržbu a rozširovanie projektu.

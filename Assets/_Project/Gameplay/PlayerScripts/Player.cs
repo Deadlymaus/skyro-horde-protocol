@@ -26,6 +26,9 @@ namespace HordeProtocol.Gameplay
                 playerShooting = GetComponent<PlayerShooting>();
                 playerShooting.playerInput = playerInput;
             }
+
+            playerMovement.playerInput = playerInput;
+            playerShooting.playerInput = playerInput;
         }
     }
 }

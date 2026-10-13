@@ -3,12 +3,17 @@ using UnityEngine.InputSystem;
 
 namespace HordeProtocol.Gameplay
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDamageable
     {
         public PlayerInput playerInput;
 
         public PlayerMovement playerMovement;
         public PlayerShooting playerShooting;
+
+        public void TakeDamage()
+        {
+            Destroy(gameObject);
+        }
 
         private void Start()
         {
@@ -30,5 +35,18 @@ namespace HordeProtocol.Gameplay
             playerMovement.playerInput = playerInput;
             playerShooting.playerInput = playerInput;
         }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("enemy"))
+            {
+                TakeDamage();
+            }
+        }
     }
+}
+
+public interface IDamageable
+{
+    public void TakeDamage();
 }

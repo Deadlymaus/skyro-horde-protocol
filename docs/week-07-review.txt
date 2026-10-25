@@ -1,0 +1,4 @@
+1. EnemyAI.cs shouldnt be inside "Presentation" folder; WaveSpawner.cs should be inside one more folder "EnemyScripts"
+2. Whole wave system should be made only after Enemies exist and have their implementation
+3. We should get wholly rid of the new Combat.inputactions because we already have InputActions for combat. Get rid of spawning enemies in update
+4. I would throw out the Combat.inputactions, Not spawning 20 enemies in update (holy fps killer), The list of waves should not be an object in the game, 

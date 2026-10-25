@@ -1,0 +1,16 @@
+Status:
+	- Proposed
+
+Contex:
+	- We have an assignment to write this ADR
+
+Descision:
+	- I plan to use AI only for when I have specific problems that I have no idea how to fix and google didnt help.
+	- I will firstly always try to do something myself, then ask google or classmate and use AI as the last resort
+	- I want to learn what the AI generates so I rewrite it myself not just "copy/paste"
+	- If it works, I use the code right from the AI but as I said above, I rewrite it and try to understand it, as well as when I need to do changed and/or connect it further, I do that myself
+
+Consequences:
+	- AI will not be used a lot therefore not hindering my ability to learn programming
+	- Rewriting the code without copy/paste will be better for me to remember and understand the code that was written
+	- AI is not being used to generate the whole project or create anything new inside the project itself, just scripts

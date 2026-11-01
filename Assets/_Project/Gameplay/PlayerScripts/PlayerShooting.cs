@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace HordeProtocol.Gameplay
 {
@@ -8,11 +9,17 @@ namespace HordeProtocol.Gameplay
     {
         public float bulletSpeed = 10f;
         public float weaponCooldown = 0.5f;
-        public GameObject bulletPrefab;
+
+        [Inject]
+        private BulletObjectPooling bulletObjectPooling;
 
         bool canShoot = true;
 
         [HideInInspector] public PlayerInput playerInput;
+
+        private void Start()
+        {
+        }
 
         private void Update()
         {
@@ -24,17 +31,24 @@ namespace HordeProtocol.Gameplay
         }
         IEnumerator Shoot()
         {
-            GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            GameObject newBullet = bulletObjectPooling.GetBullet();
+            newBullet.transform.position = transform.position;
+            newBullet.transform.rotation = transform.rotation;
 
-            newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.right * bulletSpeed, ForceMode2D.Force);
-
-            if (newBullet.activeSelf)
-            {
-                Destroy(newBullet, 5f);
-            }
+            SendFireCommand(newBullet, bulletSpeed);
 
             yield return new WaitForSeconds(weaponCooldown);
             canShoot = true;
+
+            yield return new WaitForSeconds(5f);
+            if (newBullet.activeSelf)
+                bulletObjectPooling.ReturnBullet(newBullet);
+        }
+
+        private void SendFireCommand(GameObject bullet, float bulletSpeed)
+        {
+            ICommand shooting = new Fire(bullet, bulletSpeed);
+            shooting.Execute();
         }
     }
 }

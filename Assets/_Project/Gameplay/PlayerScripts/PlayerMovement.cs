@@ -16,19 +16,24 @@ namespace HordeProtocol.Gameplay
 
         private void FixedUpdate()
         {
-            Vector2 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-            Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(newPos);
-
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
-            Vector2 dir = mouseWorldPos - (Vector2)transform.position;
-
-            if (dir.sqrMagnitude > 0.0001f)
+            if (playerInput.actions["Move"].IsPressed())
             {
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                GetComponent<Rigidbody2D>().MoveRotation(angle);
+                Vector2 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+                SendMoveCommand(moveInput, moveSpeed, gameObject.transform);
             }
+            SendRotateCommand(Mouse.current, Camera.main, gameObject.transform);
+        }
+
+        private void SendMoveCommand(Vector2 direction, float moveSpeed, Transform objectToMove)
+        {
+            ICommand movement = new Move(direction, moveSpeed, objectToMove);
+            movement.Execute();
+        }
+
+        private void SendRotateCommand(Mouse mouse, Camera camera, Transform objectToRotate)
+        {
+            ICommand rotation = new Rotation(mouse, camera, objectToRotate);
+            rotation.Execute();
         }
     }
 }

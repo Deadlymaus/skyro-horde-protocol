@@ -3,7 +3,9 @@
     "rootNamespace": "HordeProtocol.Gameplay",
     "references": [
         "HordeProtocol.Data",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "VContainer"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

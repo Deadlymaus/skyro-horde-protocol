@@ -1,5 +1,7 @@
 using HordeProtocol.Data;
+using System;
 using UnityEngine;
+using VContainer;
 
 namespace HordeProtocol.Gameplay
 {
@@ -7,6 +9,14 @@ namespace HordeProtocol.Gameplay
     {
         public SO_Enemy enemyScriptableObject;
         public Rigidbody2D rb;
+
+        [Inject]
+        private EnemyObjectPooling enemyObjectPooling;
+        [Inject]
+        private BulletObjectPooling bulletObjectPooling;
+
+        public static event Action EnemyHasDied;
+
 
         private void Start()
         {
@@ -21,16 +31,18 @@ namespace HordeProtocol.Gameplay
 
         public void TakeDamage()
         {
-            Destroy(gameObject);
+            if (enemyObjectPooling != null)
+                enemyObjectPooling.ReturnEnemy(gameObject);
+            EnemyHasDied?.Invoke();
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("something0");
             if (collision.gameObject.CompareTag("bullet"))
             {
                 TakeDamage();
-                Destroy(collision.gameObject);
+                if (bulletObjectPooling != null)
+                    bulletObjectPooling.ReturnBullet(collision.gameObject);
             }
         }
     }

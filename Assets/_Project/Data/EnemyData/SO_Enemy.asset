@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1611fa58b6c5346a41edac2feae086, type: 3}
   m_Name: SO_Enemy
   m_EditorClassIdentifier: HordeProtocol.Data::HordeProtocol.Data.SO_Enemy
-  enemyName: 
-  enemyHealth: 0
+  enemyName: Enemank4
+  enemyHealth: 10
   enemyMoveSpeed: 2
-  enemyGameObject: {fileID: 3079672613769867706, guid: 9396aa49f0113e34b8371b53a7af0bed, type: 3}
+  enemyGameObject: {fileID: 236105939759415871, guid: f3c1f148d085a2643b3a8a127f2294d5, type: 3}

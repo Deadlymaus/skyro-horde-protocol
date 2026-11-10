@@ -3,24 +3,14 @@ using UnityEngine;
 
 namespace HordeProtocol.Gameplay
 {
-    public class EnemyObjectPooling : MonoBehaviour
+    public class EnemyObjectPooling
     {
-        [SerializeField]
-        private GameObject enemyPrefab;
+        public GameObject enemyPrefab;
         [SerializeField]
         private Queue<GameObject> EnemyPool = new Queue<GameObject>();
         [SerializeField]
         private int poolStartSize = 5;
 
-        private void Start()
-        {
-            for (int i = 0; i < poolStartSize; i++)
-            {
-                GameObject enemy = Instantiate(enemyPrefab);
-                EnemyPool.Enqueue(enemy);
-                enemy.SetActive(false);
-            }
-        }
         public GameObject GetEnemy()
         {
             if(EnemyPool.Count > 0)
@@ -39,6 +29,18 @@ namespace HordeProtocol.Gameplay
         {
             EnemyPool.Enqueue(enemy);
             enemy.SetActive(false);
+        }
+
+        public EnemyObjectPooling(GameObject prefab, int startSize)
+        {
+            enemyPrefab = prefab;
+            poolStartSize = startSize;
+            for (int i = 0; i < poolStartSize; i++)
+            {
+                GameObject enemy = GameObject.Instantiate(enemyPrefab);
+                EnemyPool.Enqueue(enemy);
+                enemy.SetActive(false);
+            }
         }
     }
 }

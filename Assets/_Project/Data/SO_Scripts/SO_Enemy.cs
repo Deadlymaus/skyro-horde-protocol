@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace HordeProtocol.Data
 {
-    [CreateAssetMenu(fileName = "SO_Enemy", menuName = "Enemy/New Enemy")]
+    [CreateAssetMenu(fileName = "SO_Enemy", menuName = "Enemy/Create New Enemy")]
     public class SO_Enemy : ScriptableObject
     {
         public string enemyName;

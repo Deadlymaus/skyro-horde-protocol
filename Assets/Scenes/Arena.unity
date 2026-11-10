@@ -1481,7 +1481,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130835767}
-  - component: {fileID: 2130835766}
   - component: {fileID: 2130835765}
   m_Layer: 0
   m_Name: EnemyHandling
@@ -1502,25 +1501,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ad443b887b0d1418c4c38b00e852f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HordeProtocol.Gameplay::HordeProtocol.Gameplay.EnemySpawner
+  waves:
+  - {fileID: 11400000, guid: a6906481fc8c80d40975ef2e37ca96df, type: 2}
+  - {fileID: 11400000, guid: ff2fbcd8f832aea4d997b2ecd98d1031, type: 2}
   timeToSpawn: 5
   enemySpawns:
   - {fileID: 273575996}
   - {fileID: 1573156206}
   - {fileID: 475923719}
---- !u!114 &2130835766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130835764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743a8d9176510364cb57251f613bc6e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: HordeProtocol.Gameplay::HordeProtocol.Gameplay.EnemyObjectPooling
-  enemyPrefab: {fileID: 236105939759415871, guid: f3c1f148d085a2643b3a8a127f2294d5, type: 3}
-  poolStartSize: 5
 --- !u!4 &2130835767
 Transform:
   m_ObjectHideFlags: 0

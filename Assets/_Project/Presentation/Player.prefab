@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6847120983519446307}
   - component: {fileID: 4567074863845164051}
   - component: {fileID: 6561026424617718106}
-  - component: {fileID: 3538518940470391467}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -235,17 +234,3 @@ MonoBehaviour:
   bulletSpeed: 500
   weaponCooldown: 0.5
   playerInput: {fileID: 0}
---- !u!114 &3538518940470391467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3079672613769867706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18666a269c25af941a372cb529e9e3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: HordeProtocol.Gameplay::HordeProtocol.Gameplay.BulletObjectPooling
-  bulletPrefab: {fileID: 4453301853764170470, guid: b1602b542f69fa741b59662430731797, type: 3}
-  poolStartSize: 10

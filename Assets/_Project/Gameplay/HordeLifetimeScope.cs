@@ -9,8 +9,7 @@ namespace HordeProtocol.Gameplay
         {
             builder.Register<GameState>(Lifetime.Singleton);
             builder.Register<UI_References>(Lifetime.Singleton);
-            builder.Register<EnemyObjectPooling>(Lifetime.Singleton);
-            builder.Register<BulletObjectPooling>(Lifetime.Singleton);
+            builder.Register<EnemyFactory>(Lifetime.Singleton);
         }
     }
 }

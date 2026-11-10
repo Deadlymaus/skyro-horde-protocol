@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HordeProtocol.Gameplay
 {
-    public class BulletObjectPooling : MonoBehaviour
+    public class BulletObjectPooling
     {
         [SerializeField]
         private GameObject bulletPrefab;
@@ -11,16 +11,6 @@ namespace HordeProtocol.Gameplay
         private Queue<GameObject> BulletPool = new Queue<GameObject>();
         [SerializeField]
         private int poolStartSize = 10;
-
-        private void Start()
-        {
-            for (int i = 0; i < poolStartSize; i++)
-            {
-                GameObject bullet = Instantiate(bulletPrefab);
-                BulletPool.Enqueue(bullet);
-                bullet.SetActive(false);
-            }
-        }
         public GameObject GetBullet()
         {
             if (BulletPool.Count > 0)
@@ -31,7 +21,7 @@ namespace HordeProtocol.Gameplay
             }
             else
             {
-                GameObject bullet = Instantiate(bulletPrefab);
+                GameObject bullet = GameObject.Instantiate(bulletPrefab);
                 BulletPool.Enqueue(bullet);
 
                 bullet = BulletPool.Dequeue();
@@ -44,6 +34,18 @@ namespace HordeProtocol.Gameplay
         {
             BulletPool.Enqueue(bullet);
             bullet.SetActive(false);
+        }
+
+        public BulletObjectPooling(GameObject prefab, int startSize)
+        {
+            bulletPrefab = prefab;
+            poolStartSize = startSize;
+            for (int i = 0; i < poolStartSize; i++)
+            {
+                GameObject bullet = GameObject.Instantiate(bulletPrefab);
+                BulletPool.Enqueue(bullet);
+                bullet.SetActive(false);
+            }
         }
     }
 }

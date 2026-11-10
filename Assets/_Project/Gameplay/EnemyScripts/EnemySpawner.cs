@@ -1,33 +1,41 @@
+using HordeProtocol.Data;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using VContainer;
 
 namespace HordeProtocol.Gameplay
 {
     public class EnemySpawner : MonoBehaviour
     {
+        public List<SO_Wave> waves;
+        private int currentWaveIndex = 0;
         [SerializeField]
         private float timeToSpawn = 5f;
-        private float timeSinceSpawn;
-        private EnemyObjectPooling enemyPooling;
+        [Inject]
+        private EnemyFactory enemyFactory;
 
-        public List<GameObject> enemySpawns;
+        public List<Transform> enemySpawns;
 
         private void Start()
         {
-            enemyPooling = FindFirstObjectByType<EnemyObjectPooling>();
+            StartCoroutine(StartNextWave());
         }
 
-        private void Update()
+        IEnumerator StartNextWave()
         {
-            timeSinceSpawn += Time.deltaTime;
-            if(timeSinceSpawn >= timeToSpawn)
+            foreach (SO_Enemy enemy in waves[currentWaveIndex].Enemies)
             {
-                GameObject newEnemy = enemyPooling.GetEnemy();
-                if (newEnemy == null) return;
+                GameObject newEnemy = enemyFactory.CreateEnemy(enemy);
+                if (newEnemy == null) yield return null;
+                newEnemy.transform.position = enemySpawns[Random.Range(0, enemySpawns.Count)].position;
 
-                newEnemy.transform.position = enemySpawns[Random.Range(0, enemySpawns.Count)].transform.position;
-                timeSinceSpawn = 0f;
+                yield return new WaitForSeconds(timeToSpawn);
             }
+
+            currentWaveIndex++;
+            StartCoroutine(StartNextWave());
         }
     }
 }
